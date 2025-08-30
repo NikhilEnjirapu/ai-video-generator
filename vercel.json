@@ -8,7 +8,10 @@
     },
     {
       "src": "backend/main.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
+      }
     }
   ],
   "routes": [
@@ -23,10 +26,5 @@
   ],
   "env": {
     "PYTHONPATH": "backend"
-  },
-  "functions": {
-    "backend/main.py": {
-      "runtime": "python3.9"
-    }
   }
 }
