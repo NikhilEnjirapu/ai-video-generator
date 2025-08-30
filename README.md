@@ -45,7 +45,9 @@ The enhanced video service creates engaging visual content with:
 
 ## Quick Start
 
-### Option 1: Automated Setup (Recommended)
+### Local Development
+
+#### Option 1: Automated Setup (Recommended)
 ```bash
 # Install dependencies and setup
 python setup.py
@@ -54,7 +56,7 @@ python setup.py
 python setup.py --run
 ```
 
-### Option 2: Manual Setup
+#### Option 2: Manual Setup
 1. **Install Backend Dependencies**
 ```bash
 cd backend
@@ -77,11 +79,22 @@ python -m http.server 3000
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
 
-### Setup Script Options
+#### Setup Script Options
 - `python setup.py` - Install dependencies only
 - `python setup.py --backend` - Start backend server only
 - `python setup.py --frontend` - Start frontend server only
 - `python setup.py --run` - Start both servers
+
+### Production Deployment
+
+For production deployment to Vercel, see [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+
+**Quick Deploy:**
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy automatically with the included `vercel.json` configuration
+
+**Live Demo:** Your deployed application will be available at your Vercel URL
 
 ## Usage
 
