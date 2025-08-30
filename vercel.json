@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "name": "ai-video-generator",
+  "builds": [
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "backend/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ],
+  "env": {
+    "PYTHONPATH": "backend"
+  },
+  "functions": {
+    "backend/main.py": {
+      "runtime": "python3.9"
+    }
+  }
+}

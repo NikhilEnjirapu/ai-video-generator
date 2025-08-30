@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI VideoGen - Transform Text to Video</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+    <!-- Google-style Header -->
+    <header class="google-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <span class="logo-text">AI VideoGen</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="#home" class="nav-item active">Home</a>
+                    <a href="#features" class="nav-item">Features</a>
+                    <a href="#about" class="nav-item">About</a>
+                </nav>
+                <button class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Transform Text into 
+                        <span class="gradient-text">Engaging Videos</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Use AI to convert your articles, books, and study materials into engaging videos with characters and visual scenes in seconds.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Languages</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">AI</span>
+                            <span class="stat-label">Powered</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">HD</span>
+                            <span class="stat-label">Quality</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="video-preview">
+                        <div class="video-frame">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Generator Section -->
+        <section class="generator-section">
+            <div class="generator-container">
+                <div class="section-header">
+                    <h2>Create Your Video</h2>
+                    <p>Paste your content and let AI do the magic</p>
+                </div>
+                
+                <div class="generator-card">
+                    <!-- File Upload Section -->
+                    <div class="input-group">
+                        <label class="input-label">
+                            <i class="fas fa-upload"></i>
+                            Upload Files
+                        </label>
+                        <div class="file-upload-area" id="file-upload-area">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>Drag & Drop Files Here</h3>
+                                <p>or <span class="upload-link" id="upload-link">browse files</span></p>
+                                <p class="file-types">Supports: PDF, TXT, DOC, DOCX</p>
+                            </div>
+                            <input type="file" id="file-input" accept=".pdf,.txt,.doc,.docx" multiple style="display: none;">
+                        </div>
+                        <div class="uploaded-files" id="uploaded-files" style="display: none;">
+                            <h4>Uploaded Files:</h4>
+                            <div class="file-list" id="file-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- OR Separator -->
+                    <div class="input-separator">
+                        <div class="separator-line"></div>
+                        <span class="separator-text">OR</span>
+                        <div class="separator-line"></div>
+                    </div>
+
+                    <!-- Text Input Section -->
+                    <div class="input-group">
+                        <label for="text-input" class="input-label">
+                            <i class="fas fa-edit"></i>
+                            Content
+                        </label>
+                        <textarea 
+                            id="text-input" 
+                            placeholder="Paste your article, book chapter, or study material here..."
+                            rows="8"
+                            class="google-textarea"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="controls-group">
+                        <div class="language-selector">
+                            <label for="language" class="input-label">
+                                <i class="fas fa-globe"></i>
+                                Language
+                            </label>
+                            <select id="language" class="google-select">
+                                <option value="en">🇺🇸 English</option>
+                                <option value="hi">🇮🇳 Hindi</option>
+                                <option value="ta">🇮🇳 Tamil</option>
+                                <option value="es">🇪🇸 Spanish</option>
+                            </select>
+                        </div>
+                        
+                        <button id="generate-btn" class="google-button">
+                            <span class="btn-text">
+                                <i class="fas fa-magic"></i>
+                                Generate Video
+                            </span>
+                            <span class="btn-loader" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Processing...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-section" id="progress-section" style="display: none;">
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <i class="fas fa-cog fa-spin"></i>
+                            <h3>Creating Your Video</h3>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <p id="progress-text" class="progress-text">Initializing...</p>
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div class="output-section" id="output-section" style="display: none;">
+                    <div class="output-card">
+                        <div class="output-header">
+                            <h3><i class="fas fa-check-circle"></i> Video Generated!</h3>
+                            <p>Your AI-powered video is ready</p>
+                        </div>
+                        <div class="video-container">
+                            <video id="video-player" controls class="google-video">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-actions">
+                            <a id="download-link" class="google-button secondary" download>
+                                <i class="fas fa-download"></i>
+                                Download Video
+                            </a>
+                            <button class="google-button" onclick="location.reload()">
+                                <i class="fas fa-plus"></i>
+                                Create Another
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2>Why Choose AI VideoGen?</h2>
+                    <p>Powerful features that make video creation effortless</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Smart Summarization</h3>
+                        <p>AI-powered BART model intelligently extracts key points and creates concise summaries for optimal video length.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>Multi-language Support</h3>
+                        <p>Generate videos in English, Hindi, Tamil, and Spanish with natural-sounding Google TTS technology.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3>Character Scenes</h3>
+                        <p>Engaging videos with animated characters, visual scenes, and dynamic backgrounds that bring your content to life.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3>Instant Download</h3>
+                        <p>Download your videos immediately in MP4 format for use across all platforms and devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About AI VideoGen</h2>
+                        <p>AI VideoGen revolutionizes content creation by combining cutting-edge AI technologies. Our platform transforms any text into engaging videos with animated characters, visual scenes, and dynamic backgrounds that captivate audiences and enhance learning experiences.</p>
+                        <p>Perfect for educators, content creators, marketers, and anyone who wants to make their content more accessible and engaging through visual storytelling with character animations.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Languages</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">HD</span>
+                            <span class="stat-label">Quality</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">AI</span>
+                            <span class="stat-label">Powered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Google-style Footer -->
+    <footer class="google-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-play-circle"></i>
+                        <span>AI VideoGen</span>
+                    </div>
+                    <p>Transform text into engaging videos with AI-powered technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Technologies</h4>
+                    <ul>
+                        <li><i class="fas fa-robot"></i> BART Summarization</li>
+                        <li><i class="fas fa-language"></i> Google TTS</li>
+                        <li><i class="fas fa-cog"></i> MoviePy</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Languages</h4>
+                    <ul>
+                        <li>🇺🇸 English</li>
+                        <li>🇮🇳 Hindi</li>
+                        <li>🇮🇳 Tamil</li>
+                        <li>🇪🇸 Spanish</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI VideoGen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

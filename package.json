@@ -1,0 +1,13 @@
+{
+  "name": "ai-video-generator",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cd frontend && python -m http.server 3000",
+    "dev-backend": "cd backend && python main.py",
+    "install-backend": "cd backend && pip install -r requirements.txt",
+    "build": "echo 'No build step needed for vanilla frontend'"
+  },
+  "description": "AI-powered video generator that converts text into narrated explainer videos"
+}
