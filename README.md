@@ -90,7 +90,11 @@ python -m http.server 3000
 For production deployment to Vercel, see [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
 
 **Quick Deploy:**
-1. Push your code to GitHub
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/NikhilEnjirapu/ai-video-generator)
+
+Or manually:
+1. Push your code to GitHub ✅
 2. Connect your repository to Vercel
 3. Deploy automatically with the included `vercel.json` configuration
 
